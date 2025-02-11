@@ -1,0 +1,33 @@
+<div class="header">
+</div>
+<div class="task-groups">
+  <div *ngFor="let group of archivedTasks()" class="task-group">
+    <h3>{{group.date}}</h3>
+    <div class="task-list">
+      <div class="tasks">
+        <div *ngFor="let task of group.tasks" class="task">
+          <div class="task-content">
+            <div class="task-header">
+              <span class="class-name">{{task.course}}</span>
+              <div class="task-actions">
+                <button class="undo-button" (click)="unmarkCompleted(task)" title="Als unerledigt markieren">
+                  <app-icon name="undo"></app-icon>
+                </button>
+                <button class="delete-button" (click)="deleteTask(task.id)" title="Aufgabe löschen">
+                  <app-icon name="delete"></app-icon>
+                </button>
+              </div>
+            </div>
+            <p class="description">{{task.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="archivedTasks().length === 0" class="task-group">
+    <h3>Keine Aufgaben</h3>
+    <div class="no-tasks">
+    Keine erledigten Aufgaben
+    </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+.timetable {
+  padding: 20px;
+  overflow: hidden;
+ }
+
+h2 {
+  margin-bottom: 1.5rem;
+}
+
+.day-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.day-content {
+  width: 100%;
+}
+
+.day-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 100%;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0 20px;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  color: #1976d2;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+}
+
+.nav-button:hover:not(:disabled) {
+  background-color: rgba(25, 118, 210, 0.1);
+}
+
+.nav-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.nav-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #1976d2;
+  border-bottom: 1px solid #ddd;
+}
+
+.day-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.edit-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.edit-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.edit-button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.periods {
+  padding: 0.5rem;
+}
+
+.period-slot {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  border-bottom: 1px solid #eee;
+}
+
+.period-slot:last-child {
+  border-bottom: none;
+}
+
+.period-number {
+  padding: 0.75rem;
+  color: #666;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-right: 1px solid #ddd;
+}
+
+.period-content {
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.has-class .period-content {
+  background-color: #e3f2fd;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+@media (min-width: 768px) {
+  button {
+    width: auto;
+  }
+}

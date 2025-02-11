@@ -1,0 +1,276 @@
+.header {
+  margin-bottom: 1.5rem;
+  padding: 20px 20px 0;
+}
+
+.add-course {
+  margin-bottom: 1rem;
+}
+
+.add-course form {
+  display: flex;
+  gap: 1rem;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: fit-content;
+  white-space: nowrap;
+}
+
+button:hover:not(:disabled) {
+  background-color: #1565c0;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+  overflow: visible;
+}
+
+.course-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  transform: translateZ(0);
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.course-name {
+  font-weight: 500;
+  color: #1976d2;
+  font-size: 1.1rem;
+}
+
+.course-name-input {
+  font-weight: 500;
+  color: #1976d2;
+  font-size: 1.1rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+.course-name-input:focus {
+  outline: none;
+  border-bottom: 2px solid #1976d2;
+}
+
+.course-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.material-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.material-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 4px 8px;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.material-chip .material-type-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.course-edit {
+  padding: 12px 0 0 0;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.edit-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.edit-button.active {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.edit-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.course-name-edit {
+  margin-bottom: 1rem;
+}
+
+.materials {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.materials h4 {
+  margin: 0 0 0.5rem 0;
+  color: #666;
+}
+
+.add-material {
+  display: grid;
+  grid-template-columns: 1fr auto minmax(auto, max-content);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-material button {
+  padding: 8px;
+  height: 38px;
+}
+
+.add-material button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 480px) {
+  .add-material {
+    grid-template-columns: 1fr;
+  }
+  
+  .add-material button {
+    width: 100%;
+  }
+  
+  .add-material button svg {
+    margin-right: 0.5rem;
+  }
+}
+
+.material-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.material-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.material-type-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #666;
+}
+
+.material-type-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.material-name {
+  flex: 1;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #dc3545;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.delete-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.delete-button.small svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.no-courses {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}

@@ -1,0 +1,125 @@
+.header {
+  margin-bottom: 1.5rem;
+  padding: 0 20px;
+}
+
+.task-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+  overflow: visible;
+}
+
+.date-divider {
+  padding: 8px 0;
+  color: #666;
+  font-weight: 500;
+  border-bottom: 1px solid #ddd;
+  margin-top: 12px;
+}
+
+.date-divider.first {
+  margin-top: 0;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.task-content {
+  padding: 12px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.undo-button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #1976d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.undo-button:hover {
+  background-color: rgba(25, 118, 210, 0.1);
+}
+
+.undo-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.class-name {
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.description {
+  margin: 0;
+  color: #333;
+  word-break: break-word;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #dc3545;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.delete-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.no-tasks {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}
+
+.task-group {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  margin: 0;
+  transform: translateZ(0);
+}

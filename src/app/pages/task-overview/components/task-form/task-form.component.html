@@ -1,0 +1,37 @@
+<div class="task-form">
+  <form (submit)="$event.preventDefault(); onSubmit()">
+    <div class="form-group">
+      <label>Kurs:</label>
+      <select [(ngModel)]="formData.course" name="course" required (ngModelChange)="onCourseChange()">
+        <option value="">Kurs auswählen</option>
+        <option *ngFor="let courseName of scheduleService.uniqueCourses()" [value]="courseName">
+          {{courseName}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Beschreibung:</label>
+      <material-buttons
+        [courseName]="formData.course || ''"
+        (materialSelected)="insertMaterial($event)">
+      </material-buttons>
+      <div class="description-container">
+        <textarea 
+          [(ngModel)]="formData.description" 
+          name="description" 
+          required></textarea>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="formData.course">
+      <label>Abgabedatum:</label>
+      <due-date-selector
+        [courseName]="formData.course"
+        (selectedDate)="onDateSelected($event)">
+      </due-date-selector>
+    </div>
+    <button type="submit" [disabled]="!formData.course || !formData.description || !selectedDate()">
+      <app-icon [name]="task ? 'check' : 'add'"></app-icon>
+      {{task ? 'Aufgabe speichern' : 'Aufgabe hinzufügen'}}
+    </button>
+  </form>
+</div>

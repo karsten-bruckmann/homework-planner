@@ -1,0 +1,98 @@
+<div class="header">
+  <div class="header-top">
+    <button *ngIf="hasCompletedTasks()" class="action-button" (click)="archiveCompletedTasks()">
+      <app-icon name="archive"></app-icon>
+      <span>Archivieren</span>
+    </button>
+  </div>
+  <button class="add-task-button" (click)="showAddTaskModal($event)">
+    <app-icon name="add"></app-icon>
+    <span>Neue Aufgabe</span>
+  </button>
+</div>
+
+<task-messages 
+  [hasTasks]="todaysTasks().length > 0"
+  [message]="todaysTasks().length > 0 ? warningMessage() : motivationalMessage()">
+</task-messages>
+
+<div class="task-groups">
+  <div *ngIf="overdueTasks().length > 0" 
+       class="task-group" 
+       [class.overdue]="!allTasksCompleted(overdueTasks())"
+       [class.completed]="allTasksCompleted(overdueTasks())">
+    <h3>Überfällige Aufgaben</h3>
+    <div class="tasks">
+      <task-item *ngFor="let task of overdueTasks()"
+                 [task]="task"
+                 [dueDateText]="isToday(task.dueDate!) ? 'Heute fällig' : 'Fällig seit: ' + formatDueDate(task.dueDate!)"
+                 [isOverdue]="true"
+                 (toggleCompleted)="toggleTask($event)"
+                 (edit)="editTask($event.task, $event.event)">
+      </task-item>
+    </div>
+  </div>
+
+  <div *ngIf="todaysTasks().length > 0" 
+       class="task-group" 
+       [class.has-tasks-today]="!allTasksCompleted(todaysTasks())"
+       [class.completed]="allTasksCompleted(todaysTasks())">
+    <h3>Heute zu erledigen</h3>
+    <div class="tasks">
+      <task-item *ngFor="let task of todaysTasks()"
+                 [task]="task"
+                 dueDateText="Fällig: Morgen"
+                 (toggleCompleted)="toggleTask($event)"
+                 (edit)="editTask($event.task, $event.event)">
+      </task-item>
+    </div>
+  </div>
+  
+  <div class="task-group future-tasks">
+    <h3>Zukünftige Aufgaben</h3>
+    <div class="tasks">
+      <ng-container *ngFor="let group of futureTasks(); let first = first">
+        <div class="date-divider" [class.first]="first">{{group.date}} zu erledigen</div>
+        <task-item *ngFor="let task of group.tasks"
+                   [task]="task"
+                   [dueDateText]="'Fällig: ' + formatDueDate(task.dueDate!)"
+                   (toggleCompleted)="toggleTask($event)"
+                   (edit)="editTask($event.task, $event.event)">
+        </task-item>
+      </ng-container>
+      <div *ngIf="futureTasks().length === 0" class="no-tasks">
+        Keine zukünftigen Aufgaben
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showModal()" 
+     [@taskEdit]="{
+       value: '*',
+       params: addTaskParams()
+     }"
+     class="task-edit-container">
+  <div class="header">
+    <h2>Neue Aufgabe hinzufügen</h2>
+    <button class="close-button" (click)="closeModal()">
+      <app-icon name="close"></app-icon>
+    </button>
+  </div>
+  <task-form (submitted)="onTaskSubmitted()"></task-form>
+</div>
+
+<div *ngIf="editingTask()" 
+     [@taskEdit]="{
+       value: '*',
+       params: editAnimationParams()
+     }"
+     class="task-edit-container">
+  <div class="header">
+    <h2>Aufgabe bearbeiten</h2>
+    <button class="close-button" (click)="closeModal()">
+      <app-icon name="close"></app-icon>
+    </button>
+  </div>
+  <task-form [task]="editingTask()!" (submitted)="onTaskSubmitted()"></task-form>
+</div>

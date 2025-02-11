@@ -1,0 +1,90 @@
+<div class="header">
+  <div class="add-course">
+    <form (submit)="$event.preventDefault(); addCourse()">
+      <input 
+        type="text" 
+        [(ngModel)]="newCourseName" 
+        name="newCourse"
+        placeholder="Neues Fach hinzufügen"
+        required>
+      <button type="submit" [disabled]="!newCourseName.trim()">
+        <app-icon name="add"></app-icon>
+        Hinzufügen
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="course-list">
+  <div *ngFor="let course of scheduleService.courses()" class="course-item">
+    <div class="course-header">
+      <div *ngIf="!isEditing(course.id)" class="course-name">{{course.name}}</div>
+      <input *ngIf="isEditing(course.id)"
+        type="text"
+        [value]="course.name"
+        (change)="updateCourseName(course.id, $event)"
+        class="course-name-input"
+        placeholder="Fachname">
+      <div class="course-actions" [class.editing]="isEditing(course.id)">
+        <button class="edit-button" (click)="toggleEdit(course.id)" [class.active]="isEditing(course.id)">
+          <app-icon [name]="isEditing(course.id) ? 'check' : 'edit'"></app-icon>
+        </button>
+        <button *ngIf="!isEditing(course.id)" class="delete-button" (click)="removeCourse(course.id)">
+          <app-icon name="delete"></app-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div *ngIf="!isEditing(course.id) && course.materials.length > 0" class="material-chips">
+      <div *ngFor="let material of course.materials" class="material-chip">
+        <span class="material-type-icon">
+          <app-icon [name]="material.type"></app-icon>
+        </span>
+        {{material.name}}
+      </div>
+    </div>
+    
+    <div *ngIf="isEditing(course.id)" class="course-edit">
+      <div class="materials">
+        <h4>Materialien</h4>
+        <div class="add-material">
+          <input 
+            type="text" 
+            [(ngModel)]="newMaterialName[course.id]" 
+            [name]="'newMaterial' + course.id"
+            placeholder="Neues Material">
+          <select [(ngModel)]="newMaterialType[course.id]" [name]="'materialType' + course.id">
+            <option value="book">Buch</option>
+            <option value="workbook">Arbeitsheft</option>
+            <option value="other">Sonstiges</option>
+          </select>
+          <button (click)="addMaterial(course.id)" [disabled]="!newMaterialName[course.id] || !newMaterialName[course.id].trim()">
+            <app-icon name="add"></app-icon>
+            <span>Hinzufügen</span>
+          </button>
+        </div>
+        
+        <div class="material-list">
+          <div *ngFor="let material of course.materials" class="material-item">
+            <span class="material-type-icon" [title]="material.type">
+              <app-icon [name]="material.type"></app-icon>
+            </span>
+            <span class="material-name">{{material.name}}</span>
+            <button class="delete-button small" (click)="removeMaterial(course.id, material.id)">
+              <app-icon name="close"></app-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="scheduleService.courses().length === 0" class="course-item">
+    <div class="course-header">
+      <h3 class="course-name">Keine Fächer</h3>
+    </div>
+    <div class="no-courses">
+      Keine Fächer vorhanden
+    </div>
+  </div>
+</div>

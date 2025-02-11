@@ -1,0 +1,42 @@
+<div class="timetable">
+  <div class="day-container">
+    <div class="day-content" [@slideAnimation]="currentDayIndex()">
+      <div class="day-card">
+        <div class="day-header">
+          <h3>{{days[currentDayIndex()]}}</h3>
+          <button class="edit-button" (click)="toggleDayEdit(days[currentDayIndex()])" [class.active]="isEditingDay(days[currentDayIndex()])">
+            <app-icon [name]="isEditingDay(days[currentDayIndex()]) ? 'check' : 'edit'"></app-icon>
+          </button>
+        </div>
+        <div class="periods">
+          <div *ngFor="let period of periods" 
+               class="period-slot"
+               [class.has-class]="hasClass(days[currentDayIndex()], period)">
+            <div class="period-number">{{period}}</div>
+            <div class="period-content">
+              <ng-container *ngIf="!isEditingDay(days[currentDayIndex()])">
+                {{ getClassInfo(days[currentDayIndex()], period) }}
+              </ng-container>
+              <select *ngIf="isEditingDay(days[currentDayIndex()])"
+                      [ngModel]="getClassInfo(days[currentDayIndex()], period)"
+                      (ngModelChange)="updateSlot(days[currentDayIndex()], period, $event)">
+                <option value="">-</option>
+                <option *ngFor="let course of scheduleService.courses()" [value]="course.name">
+                  {{course.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navigation-buttons">
+    <button class="nav-button prev" (click)="previousDay()">
+      <app-icon name="chevron-left"></app-icon>
+    </button>
+    <button class="nav-button next" (click)="nextDay()">
+      <app-icon name="chevron-right"></app-icon>
+    </button>
+  </div>
+</div>

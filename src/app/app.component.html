@@ -1,0 +1,27 @@
+<div class="app-container">
+  <main [@routeAnimations]="getRouteState(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </main>
+  <nav class="bottom-nav" *ngIf="showNavigation">
+    <a routerLink="/uebersicht" routerLinkActive="active">
+      <app-icon name="other"></app-icon>
+      <span>Übersicht</span>
+    </a>
+    <a routerLink="/erledigt" routerLinkActive="active">
+      <app-icon name="check"></app-icon>
+      <span>Erledigt</span>
+    </a>
+    <a routerLink="/stundenplan" routerLinkActive="active">
+      <app-icon name="calendar"></app-icon>
+      <span>Stundenplan</span>
+    </a>
+    <a routerLink="/faecher" routerLinkActive="active">
+      <app-icon name="book"></app-icon>
+      <span>Fächer</span>
+    </a>
+    <a routerLink="/einstellungen" routerLinkActive="active">
+      <app-icon name="settings"></app-icon>
+      <span>Einstellungen</span>
+    </a>
+  </nav>
+</div>
